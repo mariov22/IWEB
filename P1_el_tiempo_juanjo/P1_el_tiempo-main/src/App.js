@@ -12,7 +12,7 @@ function App() {
   const [lon,setLon] = useState(CONFIG.default_lon);
 
   useEffect(() => {
-    async function fetchData(){
+    async function juanjojuanjo(){
       try{
         if(CONFIG.use_server){
           let resultado = await fetch(CONFIG.server_url);
@@ -25,7 +25,7 @@ function App() {
         console.log("", e);
       }
     }
-    fetchData();
+    juanjojuanjo();
   })
   
   return (

@@ -32,8 +32,8 @@ function App() {
       <Header />
       <div>
             <h2 id = "titulo"> El tiempo </h2>
-            <input type ="double" id = "latitud" value = {lat} onChange={e => setLat(e.target.value)}></input>
-            <input type ="double" id = "longitud" value = {lon} onChange={e => setLon(e.target.value)}></input>
+            <input type ="number" id = "latitud" value = {lat} onChange={e => setLat(e.target.value)}></input>
+            <input type ="number" id = "longitud" value = {lon} onChange={e => setLon(e.target.value)}></input>
             <button id = "buscar"> Buscar </button>
         </div>
         <Resultados numitems = {CONFIG.num_items} items = {mock1}/>

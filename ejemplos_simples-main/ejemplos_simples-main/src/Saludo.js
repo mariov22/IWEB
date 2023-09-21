@@ -12,6 +12,7 @@ export default function Saludo(props) {
       {elem}
       <p>Hola {nombre}</p>
       <p>Hola {formatName(usuario)}</p>
+      <h2>adios {usuario.nombre}</h2>
     </div>
   );
 }

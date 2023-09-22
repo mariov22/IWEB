@@ -15,7 +15,8 @@ function App() {
     if (CONFIG.use_server){
       try {
 
-        let apiDatos = await fetch(CONFIG.server_url);
+        let apiDatos = await fetch(CONFIG.server_url + '?lat='+lat+'&lon='+lon+'&appid='+CONFIG.api_key);
+        apiDatos = await apiDatos.json();
         console.log(apiDatos);
         setDatos(apiDatos);
 
@@ -26,7 +27,7 @@ function App() {
         setDatos(mock1);
     }
   }
-  
+
 
   return (
     <div className="App">
@@ -37,7 +38,7 @@ function App() {
           <input type ="number" id = "longitud" value = {lon} onChange={e => setLon(e.target.value)}></input>
           <button id = "buscar" onClick={()=>fetchData()}> Buscar </button>
       </div>
-      {datos && <Resultados numitems = {CONFIG.num_items} items = {datos}/>}
+      {datos && <Resultados numItems = {CONFIG.num_items} items = {datos}/>}
     </div>
   );
 }

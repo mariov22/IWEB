@@ -5,7 +5,7 @@ export default function Resultados(props){
         <div>
             <h3> Timezone: {props.items.timezone}</h3>
             <h4> El tiempo en los próximos días será: </h4>
-            <Tarjeta resultado = {props.items} />
+            <Tarjeta resultado = {props.items} numItems = {props.numItems} />
         </div>
     )
 }

@@ -2,13 +2,22 @@ export default function Tarjeta(props){
 
     //const fecha = new Date(props.resultado.daily[0].dt * 1000).toLocaleDateString();
 
+    console.log(props.numItems);
+    const arrayDatos = props.resultado.daily.slice(0, props.numItems);
+
     return(
         <div>
-            <h3> Fecha: {props.resultado.daily[0].dt} </h3>
+            <ul>
+            {arrayDatos.map((item,index) => (
+                <li key={index}>
+                <p> Fecha: {item.dt} </p>
+                <p> {console.log(props.numItems)} </p>
+                <p> Humedad: % </p>
+                <p> Viento: m/s </p>
+                </li>
+              
+            ))}
+            </ul>
             
-            <h4> Temp: </h4>
-            <h4> Humedad: % </h4>
-            <h4> Viento: m/s </h4>
-        </div>
-    )
+        </div>)
 }

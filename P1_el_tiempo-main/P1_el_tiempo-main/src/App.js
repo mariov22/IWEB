@@ -10,21 +10,36 @@ function App() {
   const [lat, setLat] = useState(CONFIG.default_lat);
   const [lon, setLon] = useState(CONFIG.default_lon);
   const [datos, setDatos] = useState();
+  const [error, setError] = useState("");
 
   const fetchData = async (param) => {
     if (CONFIG.use_server){
       try {
-
-        let apiDatos = await fetch(CONFIG.server_url + '?lat='+lat+'&lon='+lon+'&appid='+CONFIG.api_key);
+        
+        let apiDatos = await fetch(`${CONFIG.server_url} + ?lat=${lat}&lon=${lon}&appid=${CONFIG.api_key}`);
         apiDatos = await apiDatos.json();
-        console.log(apiDatos);
-        setDatos(apiDatos);
+
+        if (apiDatos.status === 200){
+
+          console.log(apiDatos);
+          setDatos(apiDatos);
+          setError(null);
+
+        } else{
+
+          setDatos(null);
+          setError(apiDatos);
+
+        }
 
       } catch (error){
-        console.log("Error");
+        setDatos(null);
+        console.log(error);
+        setError({cod: "error", message: error.message});
       }
     } else {
         setDatos(mock1);
+        setError(null);
     }
   }
 
@@ -38,7 +53,8 @@ function App() {
           <input type ="number" id = "longitud" value = {lon} onChange={e => setLon(e.target.value)}></input>
           <button id = "buscar" onClick={()=>fetchData()}> Buscar </button>
       </div>
-      {datos && <Resultados numItems = {CONFIG.num_items} items = {datos}/>}
+      {datos && <Resultados numitems = {CONFIG.num_items} items = {datos}/>}
+      {error && <div id = "error"> error </div>}
     </div>
   );
 }

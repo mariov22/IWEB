@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Header from './Header';
 import SearchPage from './SearchPage';
 import { mockdata } from './constants/products';
-import Spinner from 'react-bootstrap/Spinner';
 import CONFIG from './config/config';
+import Loading from './Loading';
+import { Routes, Route } from 'react-router-dom';
+import Product from './Product';
 
 function App() {
 
@@ -21,33 +23,40 @@ function App() {
         if (productosApi.status === 200){
 
           //console.log(apiDatos);
-          setProductos(productosApi);
-          setLoading(false);
-
+          setProductos(productosApi.products);
         } else{
-
           setProductos(null);
-          setLoading(true);
-
         }
 
       } catch (error){
         setProductos(null);
         console.log(error);
-        setLoading(true);
       }
     } else {
-        setProductos(mockdata);
-        setLoading(false);
+        setProductos(mockdata.products);
     }
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    },CONFIG.loading_timeout_ms)
+  },[])
+
+  useEffect(() => {
+    fetchData();
+  },[])
+
+  /*<Routes>
+    <Route path = "/" element={productos && <SearchPage theproducts = {productos} />} />
+    <Route path = "/products/:productId" element = {<Product theproducts = {productos} />} />
+  </Routes>*/
 
   return (
     <div className="App">
       <Header />
-      {loading && <Spinner animation = "border" id = "loading" className='spinner'/>}
-      {productos && <SearchPage theproducts = {productos}/>}
+      <Loading loading={loading} />
+      {/*!loading && <SearchPage theproducts = {productos} />*/}
     </div>
   );
 }

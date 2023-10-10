@@ -16,7 +16,7 @@ function App() {
     if (CONFIG.use_server){
       try {
         
-        let apiDatos = await fetch(`${CONFIG.server_url} + ?lat=${lat}&lon=${lon}&appid=${CONFIG.api_key}`);
+        let apiDatos = await fetch(`${CONFIG.server_url}?lat=${lat}&lon=${lon}&appid=${CONFIG.api_key}`);
         apiDatos = await apiDatos.json();
 
         if (apiDatos.status === 200){

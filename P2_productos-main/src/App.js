@@ -56,7 +56,10 @@ function App() {
     <div className="App">
       <Header />
       <Loading loading={loading} />
-      {/*!loading && <SearchPage theproducts = {productos} />*/}
+      <Routes>
+        <Route path = "/" element = {!loading && <SearchPage theproducts = {productos} />} />
+        <Route path = "/products/:productId" element = {<Product theproducts = {productos} />} />
+      </Routes>
     </div>
   );
 }

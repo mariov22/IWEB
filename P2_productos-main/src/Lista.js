@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Tarjeta(props){
     return(
         <div id = "productosresultados">
@@ -7,7 +9,7 @@ export default function Tarjeta(props){
                     <img alt = "" src = {item.images[0]} />
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>
-                    <button>VER</button>
+                    <Link to = {"/products/" + props.theproducts.id}><button>VER</button></Link>
                 </li>
             ))}
             </ul>

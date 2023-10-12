@@ -47,11 +47,6 @@ function App() {
     fetchData();
   },[])
 
-  /*<Routes>
-    <Route path = "/" element={productos && <SearchPage theproducts = {productos} />} />
-    <Route path = "/products/:productId" element = {<Product theproducts = {productos} />} />
-  </Routes>*/
-
   return (
     <div className="App">
       <Header />

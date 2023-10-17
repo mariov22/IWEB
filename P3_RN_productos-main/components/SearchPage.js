@@ -1,4 +1,4 @@
-import { Button, TextInput, View } from "react-native";
+import { Button, TextInput, View, FlatList, Text, Image } from "react-native";
 import Lista from "./Lista";
 import { useState } from "react";
 
@@ -14,10 +14,10 @@ export default function SearchPage(props){
     }
 
     return(
-        <View testID = "cuadro">
+        <View testID = "productosresultados">
             <Text testID = "catalogo">Catálogo</Text>
-            <TextInput testID = "filtro" type = "text" value = {filtro} onChange={e => setFiltro(e.target.valueOf)}></TextInput>
-            <Button testID = "buscador" onClick={pintaFiltro}>Buscar</Button>
+            <TextInput testID = "filtro" type = "text" value = {filtro} onChangeText={setFiltro}></TextInput>
+            <Button testID = "buscador" onPress={() => pintaFiltro(filtro)}>Buscar</Button>
             <Lista theproducts = {estado}/>
         </View>
     );

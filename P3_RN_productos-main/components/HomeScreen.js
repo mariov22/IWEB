@@ -6,7 +6,6 @@ import CONFIG from './components/config/config';
 import { mockdata } from './components/constants/products';
 import Loading from './components/Loading';
 import SearchPage from './components/SearchPage';
-import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Producto from "./Producto";
@@ -55,8 +54,16 @@ export default function HomeScreen(props){
         <View testID="home">
             <Header />
             <Loading loading = {loading} />
-            {!loading && <SearchPage theproducts = {productos} />} 
-            <StatusBar style="auto" />
+            <NavigationContainer>
+              <Stack.Navigator>
+                <Stack.Screen name = "SearchPage">
+                  {props => !loading && <SearchPage {...props} theproducts = {productos} />}
+                </Stack.Screen>
+                <Stack.Screen name = "Producto">
+                  {props => <Producto {...props} theproducts = {productos} />}
+                </Stack.Screen>
+              </Stack.Navigator>
+            </NavigationContainer>
         </View>
     );
 }

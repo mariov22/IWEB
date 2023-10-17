@@ -1,5 +1,6 @@
 import Lista from "./Lista"
 import { useState, useEffect } from "react";
+import Location from "./Location";
 
 export default function SearchPage(props){
 
@@ -34,6 +35,7 @@ export default function SearchPage(props){
     
     return(
         <div id = "resultados">
+            <Location />
             <h2 id = "catálogo"> catálogo: </h2>
             <input id = "filtro" placeholder="Escriba lo que quiere buscar" type = "text" value={filtro} onChange={e => setFiltro(e.target.value)} ></input>
             <button id = "buscador" onClick={pintaFiltro}> Buscar </button>

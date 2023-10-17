@@ -7,11 +7,12 @@ import CONFIG from './config/config';
 import Loading from './Loading';
 import { Routes, Route } from 'react-router-dom';
 import Product from './Product';
+import NoMatch from './NoMatch';
 
 function App() {
 
   const [loading, setLoading] = useState(true);
-  const [productos, setProductos] = useState();
+  const [productos, setProductos] = useState(mockdata.products);
 
   const fetchData = async (param) => {
     if (CONFIG.use_server){
@@ -54,6 +55,7 @@ function App() {
       <Routes>
         <Route path = "/" element = {!loading && <SearchPage theproducts = {productos} />} />
         <Route path = "/products/:productId" element = {<Product theproducts = {productos} />} />
+        <Route path = "/*" element = {<NoMatch />} />
       </Routes>
     </div>
   );

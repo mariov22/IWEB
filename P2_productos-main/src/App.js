@@ -18,13 +18,13 @@ function App() {
     if (CONFIG.use_server){
       try {
         
-        let productosApi = await fetch(CONFIG.server_url);
-        productosApi = await productosApi.json();
+        let apiProductos = await fetch(CONFIG.server_url);
+        apiProductos = await productosApi.json();
 
-        if (productosApi.status === 200){
+        if (apiProductos.status === 200){
 
           //console.log(apiDatos);
-          setProductos(productosApi.products);
+          setProductos(apiProductos.products);
         } else{
           setProductos(null);
         }
